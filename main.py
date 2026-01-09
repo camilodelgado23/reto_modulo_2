@@ -16,7 +16,7 @@ def poblar_datos_iniciales(
     vehiculo_srv: VehiculoService
 ) -> None:
     """
-    Crea conductores y vehículos de ejemplo para probar el sistema.
+    Creacion de conductores y vehículos de ejemplo para probar el sistema.
     """
 
     c1 = Conductor(nombre="Carlos Pérez", documento="123456789", licencia="B12345")
@@ -68,22 +68,22 @@ def main() -> None:
 
     poblar_datos_iniciales(conductor_srv, vehiculo_srv)
 
-    print("=== LISTA INICIAL DE CONDUCTORES ===")
+    print("LISTA INICIAL DE CONDUCTORES")
     for c in conductor_srv.listar_conductores():
         print(f"- {c.nombre} | Doc: {c.documento} | Lic: {c.licencia}")
 
-    print("\n=== LISTA INICIAL DE VEHÍCULOS ===")
+    print("\nLISTA INICIAL DE VEHÍCULOS")
     for v in vehiculo_srv.listar_vehiculos():
         print(f"- {v.__class__.__name__} | Placa: {v.placa} | Marca: {v.marca} | Motor: {v.motor.serial}")
 
-    print("\n=== ASIGNACIÓN DE CONDUCTORES (AGREGACIÓN) ===")
+    print("\nASIGNACIÓN DE CONDUCTORES (AGREGACIÓN)")
     jornada_srv.asignar_conductor_a_vehiculo(documento_conductor="123456789", placa_vehiculo="ABC12")
     jornada_srv.asignar_conductor_a_vehiculo(documento_conductor="987654321", placa_vehiculo="XYZ99")
     jornada_srv.asignar_conductor_a_vehiculo(documento_conductor="123456789", placa_vehiculo="TRK55")
 
     print("Conductores asignados a vehículos (algunos vehículos pueden existir sin conductor).")
 
-    print("\n=== INICIAR JORNADA (POLIMORFISMO + REGLAS POR TIPO) ===")
+    print("\nINICIAR JORNADA (POLIMORFISMO + REGLAS POR TIPO)")
     for v in vehiculo_srv.listar_vehiculos():
         try:
             print(f"[{v.placa}]  {v.iniciar_jornada()}")

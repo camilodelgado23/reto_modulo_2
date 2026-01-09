@@ -37,12 +37,10 @@ class Vehiculo(Movible, ABC):
             raise ValueError("Marca inválida.")
         self._marca = valor.strip().title()
 
-    # ✅ CORRECCIÓN: propiedad para exponer el motor sin romper encapsulación
     @property
     def motor(self) -> Motor:
         return self._motor
 
-    # (Opcional, pero útil): permitir cambiar motor con validación
     @motor.setter
     def motor(self, valor: Motor) -> None:
         if not isinstance(valor, Motor):
